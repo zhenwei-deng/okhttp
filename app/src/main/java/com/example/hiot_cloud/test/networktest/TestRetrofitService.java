@@ -31,6 +31,8 @@ String basUrl = "http://114.67.88.191:8080";
 
     @GET("/user/one")
     Call<ResponseBody> getUserInfo(@Header("Authorization") String authorization);
+    @GET("/user/one")
+    Call<ResultBase<UserBean>> getUserInfo2(@Header("Authorization") String authorization);
 
     @PUT("/user/email")
     Call<ResponseBody> updateEmail(@Header("Authorization") String authorization,
