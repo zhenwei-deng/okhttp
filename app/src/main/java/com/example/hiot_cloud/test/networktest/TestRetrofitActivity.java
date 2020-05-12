@@ -59,7 +59,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login("ab123","abc123","app");
+                login("ab123","abc1234","app");
             }
         });
 
@@ -73,7 +73,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
             //点击事件onClick
             //在事件中我们就能做业务逻辑
             public void onClick(View v) {
-                getUserInfo("28e50ffedbf84f2a8be44612e9a44fba_ac4af0e9fa6c4b28bd0474547ea0a6c8_use");
+                getUserInfo("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use");
             }
         });
 
@@ -82,7 +82,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateEmail("28e50ffedbf84f2a8be44612e9a44fba_ac4af0e9fa6c4b28bd0474547ea0a6c8_use","apptest123456@qq.com");
+                updateEmail("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use","apptest123456@qq.com");
             }
         });
 
@@ -95,6 +95,44 @@ public class TestRetrofitActivity extends AppCompatActivity {
 
             }
         });
+
+        //修改密码
+        Button btnGPassword = findViewById( R.id.btn_retrofit_gpassword );
+        btnGPassword.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gpassword("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use","abc123","abc1234","abc1234");
+
+
+            }
+        } );
+    }
+
+    /**
+     * 修改密码
+     * @param authorization
+     * @param oldpassword
+     * @param newpassword
+     * @param confirmpassword
+     */
+    private void gpassword(String authorization, String oldpassword, String newpassword, String confirmpassword) {
+        Call< ResponseBody > call = service.gpassword( authorization, oldpassword, newpassword, confirmpassword );
+        call.enqueue( new Callback< ResponseBody >() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    Log.d(TAG, "onResponse: " + response.body().string());
+                } catch (IOException e) {
+                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage(), t);
+            }
+        } );
     }
 
     /**
@@ -194,6 +232,18 @@ public class TestRetrofitActivity extends AppCompatActivity {
     }
 
     /**
+     * 另一种登录方式
+     * @param userName
+     * @param password
+     * @param loginCode
+     */
+    private void login2(String userName, String password, String loginCode) {
+        Call< ResponseBody > call = service.login( userName, password, loginCode );
+        callEnqueueLogin(call);
+    }
+
+
+    /**
      * 登录
      * @param userName
      * @param password
@@ -201,6 +251,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
      */
     private void login(String userName, String password, String loginCode) {
         Call<ResponseBody> call = service.login(userName,password,loginCode);
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -244,27 +295,23 @@ public class TestRetrofitActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-//                    Log.d(TAG, "onResponse: " + response.body().string());
 
-                    if (response.body() != null) {
-                        Type type = new TypeToken< ResultBase< LoginResultDTO > >() {
-                    }.getType();
-                        ResultBase< LoginResultDTO > loginResult = null;
-                        try {
-                            loginResult = gson.fromJson( response.body().string(), type );
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        if (loginResult != null && loginResult.getData() != null){
+
+
+                Type type = new TypeToken< ResultBase< LoginResultDTO > >() {}.getType();
+
+                try {
+                    //                    Log.d(TAG, "onResponse: " + response.body().string());
+                    Log.d( TAG,"onResponse:" + response.body().string());
+                    ResultBase< LoginResultDTO > loginResult = gson.fromJson( response.body().string(), type );
+                    if (loginResult != null && loginResult.getData() != null){
                         String token = loginResult.getData().getTokenValue();
                         etToken.setText(token);
 
-
-                    } else if (loginResult != null && !TextUtils.isEmpty( loginResult.getMsg() ) ){
-                            Toast.makeText( TestRetrofitActivity.this, loginResult.getMsg(), Toast.LENGTH_SHORT ).show();
-                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
 
             }
 

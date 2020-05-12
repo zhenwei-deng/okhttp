@@ -21,9 +21,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".test.networktest.TestGsonActivity"></activity>
         <activity android:name=".test.networktest.TestRetrofitActivity">
+
 
         </activity>
         <activity android:name=".test.networktest.TestOkHttpActivity" />

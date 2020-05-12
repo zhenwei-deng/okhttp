@@ -40,4 +40,11 @@ String basUrl = "http://114.67.88.191:8080";
 
     @POST("/user/register")
     Call<ResponseBody> register(@Body UserBean userBean);
+
+    @PUT("/user/password")
+    Call<ResponseBody> gpassword(@Header("Authorization") String authorization,
+                                @Query("oldpassword") String oldpassword, @Query("newpassword") String newpassword,
+                                @Query("confirmpassword") String confirmpassword);
+
+
 }
