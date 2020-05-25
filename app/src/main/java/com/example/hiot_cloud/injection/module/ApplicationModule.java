@@ -19,14 +19,27 @@ import android.app.Application;
 import android.content.Context;
 
 
-//import com.example.hiot_cloud.App;
+
+import com.google.gson.Gson;
 import com.example.hiot_cloud.App;
+import com.example.hiot_cloud.BuildConfig;
+import com.example.hiot_cloud.data.NetworkService;
 import com.example.hiot_cloud.injection.ApplicationContext;
+
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Dagger module that provides objects which will live during the application lifecycle.
@@ -49,6 +62,42 @@ public class ApplicationModule {
     @ApplicationContext
     Context provideApplicationContext() {
         return this.application;
+    }
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttpClient(){
+
+        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(6, TimeUnit.SECONDS);
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.level(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BASIC : HttpLoggingInterceptor.Level.NONE);
+        return builder.addInterceptor(logging)
+                .cache(new Cache(new File(application.getCacheDir(), "HttpResponseCache"), 10 * 1024 * 1024))
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit(OkHttpClient okHttpClient){
+        return new Retrofit.Builder()
+                .baseUrl(NetworkService.BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    NetworkService provideNetworkService(Retrofit retrofit){
+        return retrofit.create(NetworkService.class);
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson(){
+        return new Gson();
     }
 
 }

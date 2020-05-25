@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".test.networktest.TestOkHttpActivity"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".test.networktest.TestOkHttpActivity">
     <Button
         android:id="@+id/btn_okhttp_execute"
         android:text="execute"
@@ -17,6 +15,7 @@
         android:text="enqueue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btn_okhttp_login"
         android:text="登录"
@@ -32,4 +31,5 @@
         android:text="修改邮箱"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>

@@ -16,9 +16,10 @@
 package com.example.hiot_cloud.injection.component;
 
 
+import com.example.hiot_cloud.test.networktest.TestNetworkPackActivity;
+import com.example.hiot_cloud.ui.main.MainActivity;
 import com.example.hiot_cloud.injection.PerActivity;
 import com.example.hiot_cloud.injection.module.ActivityModule;
-import com.example.hiot_cloud.ui.main.MainActivity;
 import com.example.hiot_cloud.test.mvptest.TestMVPActivity;
 
 import dagger.Component;
@@ -30,20 +31,14 @@ import dagger.Component;
  * Subtypes of ActivityComponent should be decorated with annotation:
  */
 @PerActivity
-//@Component指定了 modules 对应的是ActivityModule
-//dependencies是依赖于前面定义的ApplicationComponent注入器
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
 
-    //定义inject方法
-    //有几个活动就要定义几个inject
     void inject(MainActivity mainActivity);
-
     void inject(TestMVPActivity testMVPActivity);
+    void inject(TestNetworkPackActivity activity);
 
     @Component.Builder
-
-    //注入器的生成方法
     interface ActivityComponentBuilder {
 
         ActivityComponent build();

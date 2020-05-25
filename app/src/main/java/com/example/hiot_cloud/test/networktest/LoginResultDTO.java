@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public class LoginResultDTO implements Serializable {
     private String tokenValue;
-
     private String uuid;
 
     public String getTokenValue() {

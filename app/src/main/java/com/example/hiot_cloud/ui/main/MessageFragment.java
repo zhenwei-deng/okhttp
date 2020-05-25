@@ -14,9 +14,10 @@ import com.example.hiot_cloud.ui.base.BaseFragment;
 import com.example.hiot_cloud.ui.base.BasePresenter;
 
 public class MessageFragment extends BaseFragment {
-    /*
-     * 创建fragment实例
-     * */
+    /**
+     * fragment实例
+     * @return
+     */
     public static MessageFragment newInstance(){
         MessageFragment fragment = new MessageFragment();
         Bundle args = new Bundle();
@@ -29,24 +30,20 @@ public class MessageFragment extends BaseFragment {
     }
 
     @Override
-    public void injectDependencies() {
-
+    public void injectIndependencies() {
 
     }
-    /*
-     * 实现initView方法。。。
-     * */
+
     @Override
     public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate( R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main,container,false);
         return view;
     }
-    //重写onViewCreated,操作UI
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView tvfragment1 = view.findViewById(R.id.TV_fragment);
-        tvfragment1.setText("设备");
-
+        TextView tvFragmentMain = view.findViewById(R.id.tv_fragment_main);
+        tvFragmentMain.setText("消息");
     }
 }

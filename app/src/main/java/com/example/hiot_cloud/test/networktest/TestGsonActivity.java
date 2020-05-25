@@ -8,24 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.hiot_cloud.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.example.hiot_cloud.R;
 
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.Retrofit;
+
 public class TestGsonActivity extends AppCompatActivity {
 
-    private static final String TAG ="TestGsonActivity";
-    private  Gson gson = new Gson();
+    private static final String TAG = "TestGsonActivity";
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_test_gson );
-
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_test_gson);
 
         //Json转对象
 
@@ -36,14 +37,14 @@ public class TestGsonActivity extends AppCompatActivity {
                 //创建个对象
 
 
-                 Student student = gson.fromJson( "{\n" +
-                         "\t\"height\": 175,\n" +
-                         "\t\"id\":1234,\n" +
-                         "\t\"graduation\": false,\n" +
-                         "\t\"name\": \"李四\"\n" +
-                         "}",Student.class );
+                Student student = gson.fromJson( "{\n" +
+                        "\t\"height\": 175,\n" +
+                        "\t\"id\":1234,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"李四\"\n" +
+                        "}",Student.class );
 
-                 //打印出student的内容
+                //打印出student的内容
                 if(student != null) {
                     String str = String.format( "姓名:%s,id:%d,身高:%d,毕业否:%b",
                             student.getName(), student.getId(), student.getHeight() ,student.isGraduation() );
@@ -97,8 +98,8 @@ public class TestGsonActivity extends AppCompatActivity {
                 String str = "";
                 if (studentList != null || !studentList.isEmpty()){
                     for (Student student : studentList){
-                       str = str + String.format( "姓名:%s,id:%d,身高:%d,毕业否:%b",
-                               student.getName(), student.getId(), student.getHeight() ,student.isGraduation() );
+                        str = str + String.format( "姓名:%s,id:%d,身高:%d,毕业否:%b",
+                                student.getName(), student.getId(), student.getHeight() ,student.isGraduation() );
                     }
                     Toast.makeText( TestGsonActivity.this, str, Toast.LENGTH_SHORT ).show();
                 }

@@ -20,7 +20,9 @@ import retrofit2.http.Query;
 /**
  * 网络请求接口
  */
-public interface NetService {
+public interface NetworkService {
+    public static final String BASE_URL = "http://114.67.88.191:8080/";
+
     /**
      * 登录
      * @param userName
@@ -29,10 +31,9 @@ public interface NetService {
      * @return
      */
     @POST("/auth/login")
-    //返回的都是被观察者Observable
-    //最终要返回的对象补给它
-    Observable< ResultBase< LoginResultDTO > > login(@Query("username") String userName, @Query("password") String password,
-                                                     @Query("loginCode") String loginCode);
+    Observable<ResultBase<LoginResultDTO>> login(@Query("username") String userName,
+                                                 @Query("password") String password,
+                                                 @Query("loginCode") String loginCode);
 
     /**
      * 获取用户信息
@@ -50,8 +51,7 @@ public interface NetService {
      */
     @PUT("/user/email")
     Observable<ResultBase<String>> updateEmail(@Header("Authorization") String authorization,
-                                   @Query("email") String email);
-    Observable< ResultBase< String>> updateEmail(String authorization);
+                                               @Query("email") String email);
 
     /**
      * 注册
@@ -60,7 +60,6 @@ public interface NetService {
      */
     @POST("/user/register")
     Observable<ResultBase<UserBean>> register(@Body UserBean userBean);
-
 
     /**
      * 修改密码
@@ -72,9 +71,9 @@ public interface NetService {
      */
     @PUT("/user/password")
     Observable<ResultBase<String>> getGPassword(@Header("Authorization") String authorization,
-                                                  @Query("oldpassword") String oldpassword,
-                                                  @Query("newpassword") String newpassword,
-                                                  @Query("confirmpassword") String confirmpassword);
+                                                @Query("oldpassword") String oldpassword,
+                                                @Query("newpassword") String newpassword,
+                                                @Query("confirmpassword") String confirmpassword);
 
 
 }

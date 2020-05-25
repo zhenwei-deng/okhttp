@@ -10,9 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.hiot_cloud.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.example.hiot_cloud.R;
+import com.example.hiot_cloud.test.mvptest.model.User;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -35,104 +36,52 @@ public class TestRetrofitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_retrofit);
+        setContentView(R.layout.activity_test_restrofit);
 
-
-        //全局取到edit_token
-        etToken = findViewById( R.id.et_token_retrofit );
-
+        //取到edit_token
+        etToken = findViewById(R.id.et_token_retrofit);
         //创建retrofit和service对象
-        createrRetrofit();
-
+        createRetrofit();
         //百度
-        Button btnTest = findViewById(R.id.btn_retrofit_enqueue);
-        btnTest.setOnClickListener(new View.OnClickListener() {
+        Button btnEnqueue = findViewById(R.id.btn_retrofit_enqueue);
+        btnEnqueue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 test();
-
             }
         });
-
-        //登录
-        Button btnLogin = findViewById(R.id.btn_retrofit_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login("ab123","abc1234","app");
-            }
-        });
-
-        //用户信息
-        Button btnUserInfo = findViewById(R.id.btn_retrofit_userinfo);
-        //被观察者btnUserInfo
-        //观察者OnClickListener
-        //订阅setOnClickListener   ，将被观察者btnUserInfo和观察者OnClickListener联系起来
-        btnUserInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //点击事件onClick
-            //在事件中我们就能做业务逻辑
-            public void onClick(View v) {
-                getUserInfo("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use");
-            }
-        });
-
-        //修改邮箱
-        Button btnUpdateEmail = findViewById(R.id.btn_retrofit_update_email);
-        btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateEmail("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use","apptest123456@qq.com");
-            }
-        });
-
         //注册
         Button btnRegister = findViewById(R.id.btn_retrofit_register);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 register();
-
             }
         });
-
-        //修改密码
-        Button btnGPassword = findViewById( R.id.btn_retrofit_gpassword );
-        btnGPassword.setOnClickListener( new View.OnClickListener() {
+        //登录
+        Button btnLogin = findViewById(R.id.btn_retrofit_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                gpassword("28e50ffedbf84f2a8be44612e9a44fba_08746aebae2142dcac8fe26211f1556c_use","abc123","abc1234","abc1234");
-
-
+            public void onClick(View view) {
+                login("deng123","abc123","app");
             }
-        } );
-    }
-
-    /**
-     * 修改密码
-     * @param authorization
-     * @param oldpassword
-     * @param newpassword
-     * @param confirmpassword
-     */
-    private void gpassword(String authorization, String oldpassword, String newpassword, String confirmpassword) {
-        Call< ResponseBody > call = service.gpassword( authorization, oldpassword, newpassword, confirmpassword );
-        call.enqueue( new Callback< ResponseBody >() {
+        });
+        //获取用户信息
+        Button btnUserinfo = findViewById(R.id.btn_retrofit_userinfo);
+        btnUserinfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.d(TAG, "onResponse: " + response.body().string());
-                } catch (IOException e) {
-                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
-                }
-
+            public void onClick(View view) {
+                getUserInfo("e907ffd13e4441a7bd31cf51f6e494f3_d915ee2913804599bf2c71509151d36d_use");
             }
-
+        });
+        //修改邮箱
+        Button btnUpdateEmail = findViewById(R.id.btn_retrofit_update_email);
+        btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage(), t);
+            public void onClick(View view) {
+                updateEmail("e907ffd13e4441a7bd31cf51f6e494f3_0fafe0440f03472f82af5e5933589084_use","guoguoguo@qq.com");
             }
-        } );
+        });
     }
 
     /**
@@ -145,21 +94,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         userBean.setPassword("abc123");
         userBean.setUserType("1");
         Call< ResponseBody > call = service.register(userBean);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.d(TAG, "onResponse: " + response.body().string());
-                } catch (IOException e) {
-                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage(), t);
-            }
-        });
+        callEnqueue(call);
     }
 
     /**
@@ -169,21 +104,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
      */
     private void updateEmail(String authorization, String email) {
         Call<ResponseBody> call = service.updateEmail(authorization, email);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    Log.d(TAG, "onResponse: " + response.body().string());
-                } catch (IOException e) {
-                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage(), t);
-            }
-        });
+        callEnqueue(call);
     }
 
     /**
@@ -192,72 +113,35 @@ public class TestRetrofitActivity extends AppCompatActivity {
      */
     private void getUserInfo(String authorization) {
 //        Call<ResponseBody> call = service.getUserInfo(authorization);
-//        callEnqueueLogin( call );
-
-        Call< ResultBase< UserBean > > call = service.getUserInfo2( authorization );
-        call.enqueue( new Callback< ResultBase< UserBean > >() {
+//        callEnqueueUserInfo(call);
+        Call<ResultBase<UserBean>> call = service.getUserInfo2(authorization);
+        call.enqueue(new Callback<ResultBase<UserBean>>() {
             @Override
-            public void onResponse(Call< ResultBase< UserBean > > call, Response< ResultBase< UserBean > > response) {
-                 ResultBase<UserBean> resultBase =  response.body();
-                 if (resultBase != null && resultBase.getData() != null){
-                     resultBase.getData();
-                     String str = resultBase.getData().getUsername() + "," + resultBase.getData().getEmail();
-                     Toast.makeText( TestRetrofitActivity.this, "", Toast.LENGTH_SHORT ).show();
-                 }
+            public void onResponse(Call<ResultBase<UserBean>> call, Response<ResultBase<UserBean>> response) {
+                ResultBase<UserBean> resultBase = response.body();
+                if (resultBase != null && resultBase.getData() != null){
+                    resultBase.getData();
+                    String str = resultBase.getData().getUsername() + "," + resultBase.getData().getEmail();
+                    Toast.makeText(TestRetrofitActivity.this, str, Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
-            public void onFailure(Call< ResultBase< UserBean > > call, Throwable t) {
+            public void onFailure(Call<ResultBase<UserBean>> call, Throwable t) {
 
             }
-        } );
-//        call.enqueue(new Callback<ResponseBody>() {
-//
-//
-//
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    Log.d(TAG, "onResponse: " + response.body().string());
-//                } catch (IOException e) {
-//                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Log.e(TAG, "onFailure: " + t.getMessage(), t);
-//            }
-//        });
+        });
     }
 
-    /**
-     * 另一种登录方式
-     * @param userName
-     * @param password
-     * @param loginCode
-     */
-    private void login2(String userName, String password, String loginCode) {
-        Call< ResponseBody > call = service.login( userName, password, loginCode );
-        callEnqueueLogin(call);
-    }
-
-
-    /**
-     * 登录
-     * @param userName
-     * @param password
-     * @param loginCode
-     */
-    private void login(String userName, String password, String loginCode) {
-        Call<ResponseBody> call = service.login(userName,password,loginCode);
-
+    private void callEnqueue(Call<ResponseBody> call) {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     Log.d(TAG, "onResponse: " + response.body().string());
                 } catch (IOException e) {
+                    e.printStackTrace();
                     Log.e(TAG, "onResponse: " + e.getMessage(), e);
                 }
             }
@@ -265,49 +149,25 @@ public class TestRetrofitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage(), t);
+
             }
         });
     }
 
-    private void test() {
-        Call<ResponseBody> call = service.test();
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                   Log.d(TAG, "onResponse: " + response.body().string());
-
-                    } catch (IOException e) {
-                    Log.e(TAG, "onResponse: " + e.getMessage(), e);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage(), t);
-            }
-        });
-
-    }
     private void callEnqueueLogin(Call<ResponseBody> call) {
-
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-
-
-
-                Type type = new TypeToken< ResultBase< LoginResultDTO > >() {}.getType();
-
+//                    Log.d(TAG, "onResponse: " + response.body().string());
+                        Type type = new TypeToken<ResultBase<LoginResultDTO>>() {}.getType();
                 try {
-                    //                    Log.d(TAG, "onResponse: " + response.body().string());
-                    Log.d( TAG,"onResponse:" + response.body().string());
-                    ResultBase< LoginResultDTO > loginResult = gson.fromJson( response.body().string(), type );
+//                    Log.d(TAG, "onResponse: " + response.body().string());
+                    ResultBase<LoginResultDTO> loginResult = gson.fromJson(response.body().string(), type);
                     if (loginResult != null && loginResult.getData() != null){
                         String token = loginResult.getData().getTokenValue();
                         etToken.setText(token);
-
+                    }else if (loginResult != null && !TextUtils.isEmpty(loginResult.getMsg())){
+                        Toast.makeText(TestRetrofitActivity.this, loginResult.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -318,31 +178,30 @@ public class TestRetrofitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage(), t);
+
             }
         });
-
     }
-    private void callEnqueueUserInfo(Call<ResponseBody> call) {
 
+    private void callEnqueueUserInfo(Call<ResponseBody> call) {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
- //                   Log.d(TAG, "onResponse: " + response.body().string());
-
-                    Type type =new TypeToken<ResultBase<UserBean>>(){}.getType();
-                    ResultBase<UserBean> resultBase = gson.fromJson( response.body().string(), type );
+//                    Log.d(TAG, "onResponse: " + response.body().string());
+                    Type type = new TypeToken<ResultBase<UserBean>>(){}.getType();
+                    ResultBase<UserBean> resultBase = gson.fromJson(response.body().string(),type);
                     if (resultBase != null && resultBase.getData() != null) {
                         UserBean userBean = resultBase.getData();
-
-                        String str = String.format( "用户名: %s,密码: %s， email: %s, 用户类型： %s",
-                                userBean.getUsername(), userBean.getPassword(), userBean.getEmail(), userBean.getUserType() );
-                        Toast.makeText( TestRetrofitActivity.this, str, Toast.LENGTH_SHORT ).show();
+                        String str = String.format("用户名：%s，密码：%s，email：%s，用户类型：%s",
+                                userBean.getUsername(), userBean.getPassword(), userBean.getEmail(), userBean.getUserType());
+                        Toast.makeText(TestRetrofitActivity.this, str, Toast.LENGTH_SHORT).show();
                     }
-//                    if(resultBase != null && resultBase.getMsg() != null){
-//                        Toast.makeText( TestRetrofitActivity.this, resultBase.getMsg(), Toast.LENGTH_SHORT ).show();
-//                    }
+                    if (resultBase != null && resultBase.getMsg() != null){
+                        Toast.makeText(TestRetrofitActivity.this, resultBase.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
                 } catch (IOException e) {
+                    e.printStackTrace();
                     Log.e(TAG, "onResponse: " + e.getMessage(), e);
                 }
             }
@@ -350,16 +209,44 @@ public class TestRetrofitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage(), t);
+
             }
         });
-
     }
 
-    //创建方法   工厂
-    private void createrRetrofit(){
-        retrofit = new Retrofit.Builder().baseUrl(TestRetrofitService.basUrl)
-                .addConverterFactory( GsonConverterFactory.create()).build();
+    /**
+     * 登录
+     * @param userName
+     * @param password
+     * @param loginCode
+     */
+    private void login(String userName, String password, String loginCode) {
+        Call<ResponseBody> call = service.login(userName, password, loginCode);
+        callEnqueueLogin(call);
+    }
+
+    /**
+     * 另一种登录接口方式
+     * @param userName
+     * @param password
+     * @param loginCode
+     */
+    private void login2(String userName, String password, String loginCode) {
+        Call<ResponseBody> call = service.login(userName, password, loginCode);
+        callEnqueue(call);
+    }
+
+    /**
+     * 百度
+     */
+    private void test() {
+        Call<ResponseBody> call = service.test();
+        callEnqueue(call);
+    }
+
+    private void createRetrofit(){
+        retrofit = new Retrofit.Builder().baseUrl(TestRetrofitService.baseUrl)
+                .addConverterFactory(GsonConverterFactory.create()).build();
         service = retrofit.create(TestRetrofitService.class);
     }
-
 }

@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.example.hiot_cloud.R;
 
 /**
-
  */
 public class TestFragment extends Fragment {
 
@@ -23,7 +22,6 @@ public class TestFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
 
 
     public TestFragment() {
@@ -42,18 +40,18 @@ public class TestFragment extends Fragment {
     public static TestFragment newInstance(String param1, String param2) {
         TestFragment fragment = new TestFragment();
         Bundle args = new Bundle();
-        args.putString( ARG_PARAM1, param1 );
-        args.putString( ARG_PARAM2, param2 );
-        fragment.setArguments( args );
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
+        super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString( ARG_PARAM1 );
-            mParam2 = getArguments().getString( ARG_PARAM2 );
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -61,12 +59,7 @@ public class TestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate( R.layout.fragment_test, container, false );
+        return inflater.inflate(R.layout.fragment_test, container, false);
     }
-
-
-
-
-
 
 }

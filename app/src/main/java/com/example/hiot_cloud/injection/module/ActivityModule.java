@@ -19,7 +19,7 @@ import android.app.Activity;
 
 
 import com.example.hiot_cloud.injection.PerActivity;
-import com.example.hiot_cloud.test.mvptest.dagger2test.ThirdObj;
+import com.example.hiot_cloud.test.dagger2test.ThirdObj;
 
 import dagger.Module;
 import dagger.Provides;
@@ -40,12 +40,12 @@ public class ActivityModule {
      */
     @Provides
     @PerActivity
-
-    // ActivityModule 提供的是 activity  ，返回的对象也是 activity
     Activity activity() {
         return this.activity;
     }
     @Provides
-    public ThirdObj getThirdObj(){ return new ThirdObj(); }
+    public ThirdObj getThirdObj(){
+        return new ThirdObj();
+    }
 
 }

@@ -5,42 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".test.networktest.TestRetrofitActivity">
-
+    tools:context=".test.networktest.TestNetworkPackActivity">
 
     <Button
-        android:id="@+id/btn_retrofit_enqueue"
-        android:text="enqueue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_retrofit_login"
+        android:id="@+id/btn_network_pack_login"
         android:text="登录"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/et_token_retrofit"
-        android:hint="用户token"
+        android:id="@+id/et_network_pack_token"
+        android:text="用户token"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_retrofit_userinfo"
+        android:id="@+id/btn_network_pack_userinfo"
         android:text="用户信息"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_retrofit_update_email"
+        android:id="@+id/btn_network_pack_update_email"
         android:text="修改邮箱"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_retrofit_register"
+        android:id="@+id/btn_network_pack_register"
         android:text="注册"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:id="@+id/btn_retrofit_gpassword"
+        android:id="@+id/btn_network_pack_password"
+        android:text="修改密码"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="修改密码" />
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

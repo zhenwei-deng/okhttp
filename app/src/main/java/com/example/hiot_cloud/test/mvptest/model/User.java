@@ -2,7 +2,7 @@ package com.example.hiot_cloud.test.mvptest.model;
 
 import java.io.Serializable;
 
-public class User implements  Serializable{
+public class User implements Serializable {
     private String userName;
     private String password;
 
