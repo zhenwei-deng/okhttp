@@ -44,4 +44,8 @@ public class Constants {
      * 图片详情需要的intent额外参数key
      */
     public static final String INTENT_EXTRAL_PHOTO_URL = "INTENT_EXTRAL_PHOTO_URL";
+    /**
+     * 服务端返回消息状态属性成功
+     */
+    public static final int MSG_STATUS_SUCCESS = 1;
 }

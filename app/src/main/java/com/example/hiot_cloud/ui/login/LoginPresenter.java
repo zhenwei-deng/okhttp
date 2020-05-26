@@ -7,6 +7,7 @@ import com.example.hiot_cloud.data.DataManager;
 import com.example.hiot_cloud.test.networktest.LoginResultDTO;
 import com.example.hiot_cloud.test.networktest.ResultBase;
 import com.example.hiot_cloud.ui.login.LoginView;
+import com.example.hiot_cloud.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -38,7 +39,7 @@ class LoginPresenter extends BasePresenter< LoginView > {
 
             @Override
             public void onNext(ResultBase< LoginResultDTO > resultBase) {
-                if (resultBase.getStatus() == 1) {
+                if (resultBase.getStatus() == Constants.MSG_STATUS_SUCCESS) {
                     //如果登录身份正确，弹出登录成功，跳转到主界面
                     if (resultBase != null && resultBase.getData() != null) {
                         //弹出登录成功

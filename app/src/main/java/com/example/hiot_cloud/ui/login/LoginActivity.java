@@ -14,6 +14,7 @@ import com.example.hiot_cloud.R;
 import com.example.hiot_cloud.ui.base.BaseActivity;
 import com.example.hiot_cloud.ui.main.MainActivity;
 import com.example.hiot_cloud.utils.Constants;
+import com.example.hiot_cloud.utils.LoadingUtil;
 import com.example.hiot_cloud.utils.ValidatorUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,7 +44,7 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
                 String password = tiptetPassword.getText().toString();
                 if (ValidateSucc(email,password)){
                     //请求服务端身份验证
-
+                    LoadingUtil.showLoading( LoginActivity.this ,"正在登录...");
                     presenter.login(email,password);
 
 //                    //跳转列表界面
