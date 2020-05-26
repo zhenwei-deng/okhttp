@@ -1,23 +1,20 @@
 package com.example.hiot_cloud.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ActionMode;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.hiot_cloud.R;
 import com.example.hiot_cloud.ui.base.BaseActivity;
 import com.example.hiot_cloud.ui.main.MainActivity;
-import com.example.hiot_cloud.utils.Constants;
+import com.example.hiot_cloud.ui.register.RegisterActivity;
 import com.example.hiot_cloud.utils.LoadingUtil;
 import com.example.hiot_cloud.utils.ValidatorUtils;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
@@ -25,24 +22,32 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implements LoginView{
+public class LoginActivity extends BaseActivity< LoginView, LoginPresenter > implements LoginView {
 
     @Inject
     LoginPresenter presenter;
 
-    @BindView( R.id.tiptet_email )
+    @BindView(R.id.tiptet_email)
     TextInputEditText tiptetEmail;
 
-    @BindView(R.id.tiptet_password  )
+    @BindView(R.id.tiptet_password)
     TextInputEditText tiptetPassword;
 
     @BindView(R.id.btn_login)
     Button btnLogin;
 
+    /**
+     * 注册
+     */
+    @BindView(R.id.tv_link_signup)
+    Button tvLinkSignup;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_login);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_login );
         ButterKnife.bind( this );
 //        tiptetEmail = findViewById(R.id.tiptet_email);
 //        tiptetPassword = findViewById(R.id.tiptet_password);
@@ -79,37 +84,36 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
     }
 
 
-
     /**
      * 校验用户输入
+     *
      * @param email
      * @param password
      * @return
      */
-    private boolean ValidateSucc(String email,String password) {
-
+    private boolean ValidateSucc(String email, String password) {
 
 
         //校验邮箱非空
-        if (TextUtils.isEmpty(email)){
-            tiptetEmail.setError("邮箱不能为空，请重新输入");
+        if (TextUtils.isEmpty( email )) {
+            tiptetEmail.setError( "邮箱不能为空，请重新输入" );
             return false;
         }
         //校验邮箱合规
-        if (!ValidatorUtils.isEmail(email)){
-            tiptetEmail.setError("邮箱输入不正确，请重新输入");
+        if (!ValidatorUtils.isEmail( email )) {
+            tiptetEmail.setError( "邮箱输入不正确，请重新输入" );
             return false;
         }
 
         //校验密码非空
-        if (TextUtils.isEmpty(password)){
-            tiptetPassword.setError("密码不能为空，请重新输入");
+        if (TextUtils.isEmpty( password )) {
+            tiptetPassword.setError( "密码不能为空，请重新输入" );
             return false;
         }
 
         //校验密码合规
-        if (!ValidatorUtils.isPassword(password)){
-            tiptetPassword.setError("密码输入不正确，请重新输入");
+        if (!ValidatorUtils.isPassword( password )) {
+            tiptetPassword.setError( "密码输入不正确，请重新输入" );
             return false;
         }
 
@@ -128,19 +132,18 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
     @Override
     public void loginSucc() {
         //跳转到主界面
-        Intent intent = new Intent( this,MainActivity.class );
+        Intent intent = new Intent( this, MainActivity.class );
         startActivity( intent );
 
     }
 
 
-
-            @OnClick(R.id.btn_login)
-    public void onClick(View view){
+    @OnClick(R.id.btn_login)
+    public void onClick(View view) {
         //如果校验成功，则保存登录状态，跳转到列表界面
         String email = tiptetEmail.getText().toString();
         String password = tiptetPassword.getText().toString();
-        if (ValidateSucc(email,password)) {
+        if (ValidateSucc( email, password )) {
             //请求服务端身份验证
             LoadingUtil.showLoading( LoginActivity.this, "正在登录..." );
             presenter.login( email, password );
@@ -149,5 +152,12 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
     }
 
 
+    @OnClick(R.id.tv_link_signup)
+    public void onViewClicked() {
+        Intent intent;
+        intent = new Intent( this, RegisterActivity.class );
 
+        startActivity( intent );
+        finish();
+    }
 }
