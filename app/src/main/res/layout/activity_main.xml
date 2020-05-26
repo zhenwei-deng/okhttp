@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
 
-    <com.huatec.hiot_cloud.widget.NoSlideViewPager
+    <com.example.hiot_cloud.widget.NoSlideViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -35,22 +35,27 @@
             <RadioButton
                 android:id="@+id/rb_equipment"
                 style="@style/MainRadioButtonStyle"
-                android:text="设备" />
+                android:drawableTop="@drawable/main_label_equipment"
+                android:text="设备"
+
+                />
 
             <RadioButton
                 android:id="@+id/rb_scene"
                 style="@style/MainRadioButtonStyle"
                 android:drawableTop="@drawable/main_label_scene"
-                android:text="场景" />
+                android:text="场景"
+
+                />
 
             <RadioButton
                 android:id="@+id/rb_mine"
                 style="@style/MainRadioButtonStyle"
                 android:drawableTop="@drawable/main_label_mine"
-                android:text="我的"/>
+                android:text="我的"
 
+                />
         </RadioGroup>
-
     </LinearLayout>
 
 </LinearLayout>

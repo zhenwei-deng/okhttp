@@ -34,6 +34,17 @@ public class BasePresenter<V extends BaseView> {
         return view != null;
     }
 
+    /**
+     * subscrib封装的方法，好处：节省每次都输入 observable.subscribeOn(Schedulers.io())
+     *                 .observeOn(AndroidSchedulers.mainThread())
+     *                 .unsubscribeOn(Schedulers.io())
+     *                 .subscribe(new Observer<T>() {
+     *                 这些java的配置
+     * @param observable
+     * @param callback
+     * @param <T>
+     */
+
     public <T>void subscribe(Observable<T> observable, final RequestCallback<T> callback){
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
