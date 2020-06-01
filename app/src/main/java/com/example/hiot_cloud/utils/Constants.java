@@ -1,5 +1,7 @@
 package com.example.hiot_cloud.utils;
 
+import com.example.hiot_cloud.test.networktest.UserBean;
+
 /**
  * 常量类
  */
@@ -57,4 +59,12 @@ public class Constants {
      * 网络登录成功吐司
      */
     public static final String DENGLU_SUCCESS = "登录成功";
+    /**
+     *form-data类型
+     */
+    public static final String MULTIPART_FORM_DATA = "multipart/form-data" ;
+    /**
+     * token失效状态
+     */
+    public static final int MSG_STATUS_TOKEN_OUT = -100;
 }

@@ -5,10 +5,15 @@ import com.example.hiot_cloud.test.networktest.ResultBase;
 import com.example.hiot_cloud.test.networktest.UserBean;
 import com.example.hiot_cloud.utils.Constants;
 
+import java.io.File;
+
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * 网络请求封装类
@@ -90,5 +95,30 @@ public class DataManager {
         return service.getGPassword(sharedPreferencesHelper.getUserToke(),oldpassword,newpassword,confirmpassword);
     }
 
+    /**
+     * 上传图片
+     * @param filePath
+     */
+    public Observable<ResultBase<String>> uploadImage(String filePath) {
+        //传参数的时候需要做参数转换\
+        //即定义网络封装方法
+        File file = new File(filePath);
+        RequestBody requestBody = RequestBody.create( MediaType.parse( Constants.MULTIPART_FORM_DATA ),file );
+        MultipartBody.Part multipartFile = MultipartBody.Part.createFormData( "file", file.getName(), requestBody );
+        return service.uploadImage( multipartFile, sharedPreferencesHelper.getUserToke() );
+    }
 
+    /**
+     * 注销
+     */
+    public Observable<ResultBase> logout() {
+       return service.logout( sharedPreferencesHelper.getUserToke() )
+               .doOnNext( new Consumer< ResultBase >() {
+                   @Override
+                   public void accept(ResultBase resultBase) throws Exception {
+                       sharedPreferencesHelper.setUserToken("");
+
+                   }
+               } );
+    }
 }
