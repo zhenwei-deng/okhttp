@@ -25,7 +25,7 @@
         android:supportsRtl="true"
 
         tools:replace="android:theme"
-        android:theme="@style/AppTheme.NoAction">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".ui.register.RegisterActivity">
 
 

@@ -199,10 +199,10 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
-        if (requestCode == Activity.RESULT_CANCELED){
+        if (resultCode == Activity.RESULT_CANCELED){
             showMessage( "用户取消" );
         }
-        if (requestCode == Activity.RESULT_OK){
+        if (resultCode == Activity.RESULT_OK){
             if (requestCode == PictureConfig.CHOOSE_REQUEST){
                 List< LocalMedia > ImageList = PictureSelector.obtainMultipleResult( data );
                 if(ImageList != null && !ImageList.isEmpty() ){

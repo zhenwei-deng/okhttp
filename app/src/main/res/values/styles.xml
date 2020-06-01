@@ -18,10 +18,11 @@
         <item name="android:gravity">center</item>
         <item name="android:drawablePadding">2dp</item>
     </style>
-
-    <style name="AppTheme.NoAction">
+    <!--清单界面的主题名-->
+    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
     <!--登录注册界面输入框属性-->
     <style name="loginEditTextStyle">
