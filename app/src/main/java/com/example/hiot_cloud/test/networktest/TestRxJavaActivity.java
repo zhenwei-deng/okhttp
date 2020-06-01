@@ -60,7 +60,7 @@ public class TestRxJavaActivity extends AppCompatActivity {
         btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateEmail(etToken.getText().toString(),"guoxil@qq.com");
+                updateEmail(etToken.getText().toString(),"deng123@qq.com");
 
             }
         });

@@ -43,7 +43,7 @@ class LoginPresenter extends BasePresenter< LoginView > {
                     //如果登录身份正确，弹出登录成功，跳转到主界面
                     if (resultBase != null && resultBase.getData() != null) {
                         //弹出登录成功
-                        getView().showMessage( "登录成功" );
+                        getView().showMessage( Constants.DENGLU_SUCCESS );
 
                         //跳转到主界面
                         getView().loginSucc(  );
@@ -65,7 +65,7 @@ class LoginPresenter extends BasePresenter< LoginView > {
             @Override
             public void onError(Throwable e) {
                 super.onError( e );
-                getView().showMessage( "当前网络无法访问，请稍后再试" );
+                getView().showMessage( Constants.TOAST_MAS_NETWORK_FAIL );
             }
         } );
     }

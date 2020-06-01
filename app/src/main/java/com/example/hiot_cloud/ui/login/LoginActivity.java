@@ -3,7 +3,6 @@ package com.example.hiot_cloud.ui.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.ActionMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,9 +38,9 @@ public class LoginActivity extends BaseActivity< LoginView, LoginPresenter > imp
     /**
      * 注册
      */
-    @BindView(R.id.tv_link_signup)
-    Button tvLinkSignup;
 
+    @BindView(R.id.tv_link_signup)
+    TextView tvLinkSignup;
 
 
     @Override
@@ -160,4 +159,6 @@ public class LoginActivity extends BaseActivity< LoginView, LoginPresenter > imp
         startActivity( intent );
         finish();
     }
+
+
 }

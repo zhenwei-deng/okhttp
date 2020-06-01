@@ -91,6 +91,7 @@ public class BasePresenter<V extends BaseView> {
             //对话框隐藏
             LoadingUtil.hideLoading();
             Log.e(TAG, "onError: ", e);
+            getView().showMessage( "服务器开小差了，请稍后再试" );
         }
 
         public void onComplete() {

@@ -20,6 +20,10 @@ public class UserBean implements Serializable {
      */
     private String userType;
     /**
+     * 用户头像相对路径
+     */
+    private String img;
+    /**
      * 新密码
      */
     private String newpassword;
@@ -89,6 +93,14 @@ public class UserBean implements Serializable {
 
     public void setConfirmpassword(String confirmpassword) {
         this.confirmpassword = confirmpassword;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
 

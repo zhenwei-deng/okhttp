@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.hiot_cloud.data.DataManager;
+import com.example.hiot_cloud.data.NetworkService;
 import com.example.hiot_cloud.ui.base.BasePresenter;
 
 import javax.inject.Inject;
@@ -43,7 +44,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
      * @param authorization
      */
     public void getUserInfo(String authorization) {
-        subscribe( dataManager.getUserInfo( authorization ), new RequestCallback< ResultBase< UserBean > >() {
+        subscribe( dataManager.getUserInfo(  ), new RequestCallback< ResultBase< UserBean > >() {
             @Override
             public void onNext(ResultBase< UserBean > resultBase) {
                 if (resultBase != null && resultBase.getData() != null) {
@@ -66,7 +67,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
      * @param email
      */
     public void updateEmail(String authorization, String email) {
-        subscribe( dataManager.updateEmail( authorization, email ), new RequestCallback< ResultBase< String > >() {
+        subscribe( dataManager.updateEmail( email ), new RequestCallback< ResultBase< String > >() {
             @Override
             public void onNext(ResultBase< String > resultBase) {
                 if (resultBase != null && !TextUtils.isEmpty( resultBase.getData() )) {
@@ -109,8 +110,15 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
         } );
     }
 
+    /**
+     * 修改密码
+     * @param Authorization
+     * @param oldpassword
+     * @param newpassword
+     * @param confirmpassword
+     */
     public void GPassword(String Authorization, String oldpassword, String newpassword, String confirmpassword) {
-        subscribe( dataManager.getGPassword( Authorization, oldpassword, newpassword, confirmpassword ), new RequestCallback< ResultBase< String > >() {
+        subscribe( dataManager.getGPassword(oldpassword, newpassword, confirmpassword ), new RequestCallback< ResultBase< String > >() {
             @Override
             public void onNext(ResultBase< String > resultBase) {
                 if (resultBase != null && !TextUtils.isEmpty( resultBase.getData() )) {

@@ -75,7 +75,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
                     //如果登录身份正确，弹出登录成功，跳转到主界面
                     if (resultBase != null && resultBase.getData() != null) {
                         //弹出登录成功
-//                        getView().showMessage( "登录成功" );
+//                        getView().showMessage( " Constants.DENGLU_SUCCESS" );
 
                         //跳转到主界面
                         getView().loginSucc(  );
