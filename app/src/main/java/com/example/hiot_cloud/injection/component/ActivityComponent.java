@@ -17,6 +17,8 @@ package com.example.hiot_cloud.injection.component;
 
 
 import com.example.hiot_cloud.test.networktest.TestNetworkPackActivity;
+import com.example.hiot_cloud.ui.ChangeEmailupdate.ChangeUserEmailActivity;
+import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
 import com.example.hiot_cloud.ui.login.LoginActivity;
 import com.example.hiot_cloud.ui.main.MainActivity;
 import com.example.hiot_cloud.injection.PerActivity;
@@ -51,6 +53,10 @@ public interface ActivityComponent {
     void inject(RegisterActivity activity);
 
     void inject(MineFragment fragment);
+
+    void inject(ChangeUserPasswordActivity activity);
+
+    void inject(ChangeUserEmailActivity activity);
 
     @Component.Builder
     interface ActivityComponentBuilder {

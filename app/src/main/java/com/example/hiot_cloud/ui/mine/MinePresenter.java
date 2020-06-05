@@ -5,7 +5,6 @@ import com.example.hiot_cloud.test.networktest.ResultBase;
 import com.example.hiot_cloud.test.networktest.UserBean;
 import com.example.hiot_cloud.ui.base.BasePresenter;
 import com.example.hiot_cloud.utils.Constants;
-
 import javax.inject.Inject;
 
 /**
@@ -15,6 +14,7 @@ import javax.inject.Inject;
 
      @Inject
      DataManager dataManager;
+
     @Inject
     public MinePresenter() {
     }
@@ -45,7 +45,7 @@ import javax.inject.Inject;
                     getView().showMessage( "服务器开小差了，请稍后再试" );
                     return;
                 }
-               UserBean userBean =  resultBase.getData();
+                UserBean userBean =  resultBase.getData();
                 getView().refreshUserInfo(userBean);
             }
         } );

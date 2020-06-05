@@ -3,7 +3,6 @@ package com.example.hiot_cloud.ui.mine;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Picture;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.hiot_cloud.R;
-import com.example.hiot_cloud.injection.component.ActivityComponent;
 import com.example.hiot_cloud.test.networktest.UserBean;
+import com.example.hiot_cloud.ui.ChangeEmailupdate.ChangeUserEmailActivity;
+import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
 import com.example.hiot_cloud.ui.base.BaseActivity;
 import com.example.hiot_cloud.ui.base.BaseFragment;
-import com.example.hiot_cloud.ui.base.BasePresenter;
 import com.example.hiot_cloud.ui.login.LoginActivity;
 import com.example.hiot_cloud.utils.ImageUtils;
 import com.luck.picture.lib.PictureSelector;
@@ -41,9 +40,12 @@ import butterknife.OnClick;
 
 public class MineFragment extends BaseFragment<MineView,MinePresenter> implements  MineView{
 
-
+//    private TextView username;
+//    private Button loginout;
+//    private LinearLayout passwordActivity;
     @Inject
     MinePresenter presenter;
+
     @BindView(R.id.iv_head_image)
     ImageView ivHeadImage;
 
@@ -61,6 +63,30 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
 
     @BindView(R.id.btn_logout)
     Button btnLogout;
+
+//
+//    private void initView(){
+//        passwordActivity = getActivity().findViewById( R.id.password_info );
+//
+//
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated( savedInstanceState );
+//        initView();
+//        //加载修改密码信息
+//
+//
+//        passwordActivity.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //跳转到修改密码界面
+//                startActivity( new Intent( getActivity(), ChangeUserPasswordActivity.class) );
+//
+//            }
+//        } );
+//    }
 
 
     /**
@@ -82,6 +108,7 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
 
     @Override
     public void injectIndependencies() {
+        //判断获取到的活动是否属于BaseActivity类
         if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).getActivityComponent().inject( this );
         }
@@ -92,32 +119,46 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
         View view = inflater.inflate( R.layout.fragment_mine, container, false );
         ButterKnife.bind( this,view );
         return view;
+
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated( view, savedInstanceState );
-        //定义一个方法loadUserInfo
+        //定义一个加载用户方法loadUserInfo
         presenter.loadUserInfo();
+
+        //定义一个修改密码方法GPassword
+
+
     }
 
     @OnClick({R.id.iv_head_image, R.id.tv_user_center_update_password, R.id.tv_user_center_update_email, R.id.btn_logout})
     public void onViewClicked(View view) {
+
         switch (view.getId()) {
             case R.id.iv_head_image:
                 //动态授权
                 checkPermission();
                 break;
             case R.id.tv_user_center_update_password:
+
+                //修改密码
+            changeUserPassword( );
                 break;
+
             case R.id.tv_user_center_update_email:
+                changeUserEmail();
                 break;
+
             case R.id.btn_logout:
                 //注销
                 presenter.logout();
                 break;
         }
     }
+
 
 
 
@@ -193,9 +234,15 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
                 //.videoMinSecond(10)// 显示多少秒以内的视频or音频也可适用 int
                 //.recordVideoSecond()//视频秒数陆制 默认60s int
                 .isDragFrame(true)// 是否可拖动裁剪框(固定)
-        .forResult( PictureConfig.CHOOSE_REQUEST );
+                .forResult( PictureConfig.CHOOSE_REQUEST );
     }
 
+    /**
+     * 实现用户信息的加载方法
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
@@ -206,8 +253,8 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
             if (requestCode == PictureConfig.CHOOSE_REQUEST){
                 List< LocalMedia > ImageList = PictureSelector.obtainMultipleResult( data );
                 if(ImageList != null && !ImageList.isEmpty() ){
-                   String filePath = ImageList.get( 0 ).getCompressPath();
-                   presenter.uploadImage(filePath);
+                    String filePath = ImageList.get( 0 ).getCompressPath();
+                    presenter.uploadImage(filePath);
                 }
 
 
@@ -222,6 +269,10 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
         tvUserCenterNickname.setText(userBean.getUsername());
     }
 
+    /**
+     * 实现刷新图片的方法
+     * @param url
+     */
     @Override
     public void refreshUserHead(String url) {
         ImageUtils.showCircle(getActivity(),ivHeadImage ,ImageUtils.getFullUrl(url));
@@ -229,6 +280,9 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
     }
 
 
+    /**
+     * 实现刷新token的方法后，打开登录界面
+     */
     @Override
     public void tokenOut() {
         Intent intent = new Intent( getActivity(), LoginActivity.class );
@@ -236,5 +290,27 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
         getActivity().finish();
 
     }
+
+
+
+
+    /**
+     * 点击修改密码，打开修改密码界面
+     */
+
+    public void changeUserPassword() {
+        Intent intent = new Intent( getActivity(), ChangeUserPasswordActivity.class );
+        startActivity( intent );
+        getActivity().finish();
+
+    }
+    public void changeUserEmail() {
+        Intent intent = new Intent(getActivity(), ChangeUserEmailActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+
+
 
 }

@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.hiot_cloud.R;
 import com.example.hiot_cloud.R;
@@ -44,11 +47,13 @@ public class SplashActivity extends BaseActivity {
 
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         //设置定时器
+
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
