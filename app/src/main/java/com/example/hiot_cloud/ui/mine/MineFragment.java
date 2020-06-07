@@ -40,9 +40,7 @@ import butterknife.OnClick;
 
 public class MineFragment extends BaseFragment<MineView,MinePresenter> implements  MineView{
 
-//    private TextView username;
-//    private Button loginout;
-//    private LinearLayout passwordActivity;
+
     @Inject
     MinePresenter presenter;
 
@@ -129,7 +127,7 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
         //定义一个加载用户方法loadUserInfo
         presenter.loadUserInfo();
 
-        //定义一个修改密码方法GPassword
+
 
 
     }
@@ -145,15 +143,17 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
             case R.id.tv_user_center_update_password:
 
                 //修改密码
-            changeUserPassword( );
+                changeUserPassword( );
                 break;
 
             case R.id.tv_user_center_update_email:
+                //修改邮箱
                 changeUserEmail();
                 break;
 
             case R.id.btn_logout:
                 //注销
+                //由于注销是按钮所以前面要加presenter
                 presenter.logout();
                 break;
         }
@@ -301,9 +301,14 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
     public void changeUserPassword() {
         Intent intent = new Intent( getActivity(), ChangeUserPasswordActivity.class );
         startActivity( intent );
+        //在使用注入器的按键绑定后才需要getActivity()
         getActivity().finish();
 
     }
+
+    /**
+     * 点击修改邮箱，打开修改邮箱界面
+     */
     public void changeUserEmail() {
         Intent intent = new Intent(getActivity(), ChangeUserEmailActivity.class);
         startActivity(intent);

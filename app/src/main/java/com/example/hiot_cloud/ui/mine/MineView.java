@@ -25,13 +25,13 @@ interface MineView extends BaseView {
     void tokenOut();
 
     /**
-     * 修改密码的处理
+     * 点击修改密码的处理
      *
      */
     void changeUserPassword( );
 
     /**
-     * 修改邮箱的处理的操作
+     * 点击修改邮箱的处理的操作
      */
 
     void changeUserEmail();

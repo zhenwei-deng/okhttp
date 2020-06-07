@@ -36,7 +36,6 @@ public interface NetworkService {
     @POST("/auth/login")
     Observable<ResultBase<LoginResultDTO>> login(@Query("username") String userName,
                                                  @Query("password") String password,
-
                                                  @Query("loginCode") String loginCode);
 
     /**

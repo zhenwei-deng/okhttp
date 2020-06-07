@@ -96,14 +96,7 @@ public class DataManager {
         return service.getGPassword(sharedPreferencesHelper.getUserToke(),oldpassword, newpassword, confirmpassword );
     }
 
-    /**
-     * 我的界面跳转后修改邮箱
-     * @param email
-     * @return
-     */
-    public Observable<ResultBase<String>> changeEmail(String email){
-        return service.updateEmail(sharedPreferencesHelper.getUserToke(),email);
-    }
+
     /**
      * 上传图片
      * @param filePath
@@ -131,6 +124,14 @@ public class DataManager {
                } );
     }
 
+    /**
+     * 我的界面跳转后修改邮箱
+     * @param email
+     * @return
+     */
+    public Observable<ResultBase<String>> changeEmail(String email){
+        return service.updateEmail(sharedPreferencesHelper.getUserToke(),email);
+    }
     /**
      * 我的界面的修改密码
      */

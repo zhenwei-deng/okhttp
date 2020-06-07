@@ -155,7 +155,6 @@ public class LoginActivity extends BaseActivity< LoginView, LoginPresenter > imp
     public void onViewClicked() {
         Intent intent;
         intent = new Intent( this, RegisterActivity.class );
-
         startActivity( intent );
         finish();
     }
