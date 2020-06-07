@@ -3,6 +3,8 @@ package com.example.hiot_cloud.ui.base;
 
 import android.util.Log;
 
+import com.example.hiot_cloud.test.networktest.ResultBase;
+import com.example.hiot_cloud.utils.Constants;
 import com.example.hiot_cloud.utils.LoadingUtil;
 
 import io.reactivex.Observable;
@@ -85,7 +87,26 @@ public class BasePresenter<V extends BaseView> {
 
         }
 
-        public abstract void onNext(T t);
+        public void onNext(T t){
+
+            ResultBase resultBase = (ResultBase) t;
+            //返回的对象是否为空
+            if (resultBase == null){
+                getView().showMessage( "服务器开小差了，请稍后再试" );
+                return;
+            }
+            //如果token是否失效
+            if (resultBase.getStatus() == Constants.MSG_STATUS_TOKEN_OUT ){
+                getView().tokenOut();
+                return;
+            }
+            //返回状态值是否成功
+            if (resultBase.getStatus() != Constants.MSG_STATUS_SUCCESS){
+                getView().showMessage( resultBase.getMsg() );
+                return;
+
+            }
+        }
 
         public void onError(Throwable e) {
             //对话框隐藏

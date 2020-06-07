@@ -46,8 +46,8 @@ public class ChangeUserEmailActivity extends BaseActivity< ChangeUserEmailView, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_change_user_email_activity );
-        ButterKnife.bind( this );
-
+//        //基类中已经创建
+      ButterKnife.bind( this );
 
         final EditText email = findViewById( R.id.et_email );
 
@@ -73,10 +73,14 @@ public class ChangeUserEmailActivity extends BaseActivity< ChangeUserEmailView, 
 
     }
 
+    /**
+     * 修改邮箱成功后跳转登录界面
+     */
     @Override
     public void changeuseremailSucc() {
         Intent intent = new Intent( this, LoginActivity.class );
         startActivity( intent );
+        finish();
 
     }
 

@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity< LoginView, LoginPresenter > imp
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
         ButterKnife.bind( this );
-//        tiptetEmail = findViewById(R.id.tiptet_email);
+        tiptetEmail = findViewById(R.id.tiptet_email);
 //        tiptetPassword = findViewById(R.id.tiptet_password);
 
 //        Button btnLogin = findViewById(R.id.btn_login);

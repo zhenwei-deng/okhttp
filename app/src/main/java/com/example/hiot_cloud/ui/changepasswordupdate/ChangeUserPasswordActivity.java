@@ -58,8 +58,8 @@ public class ChangeUserPasswordActivity extends BaseActivity< ChangeUserPassword
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_change_user_password );
-        ButterKnife.bind( this );
-
+        //基类中已经创建
+      ButterKnife.bind( this );
 
         editText = findViewById( R.id.et_network_pack_token );
         final EditText oldpassword = findViewById( R.id.et_oldpassword );
@@ -98,10 +98,14 @@ public class ChangeUserPasswordActivity extends BaseActivity< ChangeUserPassword
         Toast.makeText( this, message, Toast.LENGTH_SHORT ).show();
     }
 
+    /**
+     * 修改密码成功后跳转登录界面
+     */
     @Override
     public void changeuserpasswordSucc() {
         Intent intent = new Intent( this, LoginActivity.class );
         startActivity( intent );
+        finish();
     }
 
 
