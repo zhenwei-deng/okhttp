@@ -18,6 +18,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -91,5 +92,14 @@ public interface NetworkService {
                                               @Header("Authorization") String authorization);
 
 
+    /**
+     * 绑定设备
+     * @param device_pk    设备id
+     * @param authorization
+     * @return
+     */
+    @POST("/holder/device/{device_pk}")
+    Observable<ResultBase> bindDevice (@Path("device_pk")String device_pk,
+                                        @Header("Authorization") String authorization);
 
 }

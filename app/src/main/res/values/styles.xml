@@ -62,4 +62,16 @@
     </style>
 
 
+    <!--设备文本框属性-->
+    <style name="UserCenterScanViewStyle">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_height">match_parent</item>d
+    <item name="android:textColor">#fff</item>
+    <item name="android:drawablePadding">5dp</item>
+    <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
 </resources>

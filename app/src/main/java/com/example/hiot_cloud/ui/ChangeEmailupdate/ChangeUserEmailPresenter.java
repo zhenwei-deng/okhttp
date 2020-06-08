@@ -8,7 +8,9 @@ import com.example.hiot_cloud.ui.base.BasePresenter;
 
 import javax.inject.Inject;
 
-
+/**
+ * 修改邮箱presenter类
+ */
 public class ChangeUserEmailPresenter extends BasePresenter< ChangeUserEmailView > {
 
     /**

@@ -1,7 +1,9 @@
 package com.example.hiot_cloud.ui.ChangeEmailupdate;
 
 import com.example.hiot_cloud.ui.base.BaseView;
-
+/**
+ * 修改邮箱模块view接口
+ */
 public interface ChangeUserEmailView extends BaseView {
     /**
      * 修改邮箱成功后返回登录界面成功的处理

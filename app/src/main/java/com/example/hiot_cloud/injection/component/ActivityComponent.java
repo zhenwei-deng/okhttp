@@ -27,6 +27,7 @@ import com.example.hiot_cloud.test.mvptest.TestMVPActivity;
 import com.example.hiot_cloud.ui.main.SplashActivity;
 import com.example.hiot_cloud.ui.mine.MineFragment;
 import com.example.hiot_cloud.ui.register.RegisterActivity;
+import com.example.hiot_cloud.ui.scan.ScanActivity;
 
 import dagger.Component;
 
@@ -57,6 +58,8 @@ public interface ActivityComponent {
     void inject(ChangeUserPasswordActivity activity);
 
     void inject(ChangeUserEmailActivity activity);
+
+    void inject(ScanActivity activity);
 
     @Component.Builder
     interface ActivityComponentBuilder {

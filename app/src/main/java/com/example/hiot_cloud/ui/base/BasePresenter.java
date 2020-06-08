@@ -111,8 +111,12 @@ public class BasePresenter<V extends BaseView> {
         public void onError(Throwable e) {
             //对话框隐藏
             LoadingUtil.hideLoading();
-            Log.e(TAG, "onError: ", e);
-            getView().showMessage( "服务器开小差了，请稍后再试" );
+
+            Log.e( TAG, "onError: ", e );
+            if (getView() instanceof BaseActivity) {
+                getView().showMessage( "服务器开小差了，请稍后再试" );
+            }
+            LoadingUtil.hideLoading();
         }
 
         public void onComplete() {

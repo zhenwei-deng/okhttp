@@ -20,8 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
-        <activity android:name=".ui.ChangeEmailupdate.ChangeUserEmailActivity"></activity>
-        <activity android:name=".ui.changepasswordupdate.ChangeUserPasswordActivity"></activity>
+        <activity android:name=".ui.scan.ScanActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.ChangeEmailupdate.ChangeUserEmailActivity" />
+        <activity android:name=".ui.changepasswordupdate.ChangeUserPasswordActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".test.glidetest.TestGlideActivity" />
         <activity android:name=".test.TestActivity" />
@@ -31,18 +39,14 @@
         <activity android:name=".test.networktest.TestRetrofitActivity" />
         <activity android:name=".test.networktest.TestOkHttpActivity" />
         <activity android:name=".ui.main.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".test.lifecycletest.TestLifeCycleActivity" />
         <activity android:name=".new_test.mvptest.NewTestMVPActivity" />
         <activity android:name=".test.mvptest.TestMVPActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-
     </application>
 
 </manifest>
