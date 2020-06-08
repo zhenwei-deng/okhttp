@@ -1,11 +1,9 @@
 package com.example.hiot_cloud.test.networktest;
 
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.hiot_cloud.data.DataManager;
-import com.example.hiot_cloud.data.NetworkService;
+import com.example.hiot_cloud.data.bean.UserBean;
 import com.example.hiot_cloud.ui.base.BasePresenter;
 
 import javax.inject.Inject;

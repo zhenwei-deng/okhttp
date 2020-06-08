@@ -1,7 +1,5 @@
 package com.example.hiot_cloud.utils;
 
-import com.example.hiot_cloud.test.networktest.UserBean;
-
 /**
  * 常量类
  */
@@ -67,4 +65,13 @@ public class Constants {
      * token失效状态
      */
     public static final int MSG_STATUS_TOKEN_OUT = -100;
+    /**
+     * 设备已绑定状态
+     */
+    public static final int DEVICE_STATUS_BINDED = 1;
+
+    /**
+     * 设备未绑定状态
+     */
+    public static final int DEVICE_STATUS_UNBINDED = 0;
 }

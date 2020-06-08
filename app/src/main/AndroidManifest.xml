@@ -22,11 +22,7 @@
         tools:replace="android:theme">
         <activity android:name=".ui.scan.ScanActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.ChangeEmailupdate.ChangeUserEmailActivity" />
         <activity android:name=".ui.changepasswordupdate.ChangeUserPasswordActivity" />
@@ -39,7 +35,11 @@
         <activity android:name=".test.networktest.TestRetrofitActivity" />
         <activity android:name=".test.networktest.TestOkHttpActivity" />
         <activity android:name=".ui.main.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".test.lifecycletest.TestLifeCycleActivity" />

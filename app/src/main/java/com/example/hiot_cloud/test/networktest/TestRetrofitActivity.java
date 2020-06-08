@@ -1,7 +1,5 @@
 package com.example.hiot_cloud.test.networktest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,10 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hiot_cloud.R;
+import com.example.hiot_cloud.data.bean.UserBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.example.hiot_cloud.R;
-import com.example.hiot_cloud.test.mvptest.model.User;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

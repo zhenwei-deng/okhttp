@@ -1,8 +1,9 @@
 package com.example.hiot_cloud.test.networktest;
 
+import com.example.hiot_cloud.data.bean.UserBean;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -27,7 +28,7 @@ public interface TestRetrofitService {
     Call<ResponseBody> getUserInfo(@Header("Authorization") String authorization);
 
     @GET("/user/one")
-    Call<ResultBase<UserBean>> getUserInfo2(@Header("Authorization") String authorization);
+    Call< ResultBase< UserBean > > getUserInfo2(@Header("Authorization") String authorization);
 
     @PUT("/user/email")
     Call<ResponseBody> updateEmail(@Header("Authorization") String authorization,

@@ -15,11 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.hiot_cloud.R;
-import com.example.hiot_cloud.test.networktest.UserBean;
+import com.example.hiot_cloud.data.bean.UserBean;
 import com.example.hiot_cloud.ui.ChangeEmailupdate.ChangeUserEmailActivity;
-import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
 import com.example.hiot_cloud.ui.base.BaseActivity;
 import com.example.hiot_cloud.ui.base.BaseFragment;
+import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
 import com.example.hiot_cloud.ui.login.LoginActivity;
 import com.example.hiot_cloud.utils.ImageUtils;
 import com.luck.picture.lib.PictureSelector;
@@ -35,7 +35,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MineFragment extends BaseFragment<MineView,MinePresenter> implements  MineView{

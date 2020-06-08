@@ -1,17 +1,15 @@
 package com.example.hiot_cloud.data;
 
+import com.example.hiot_cloud.data.bean.DeviceBean;
+import com.example.hiot_cloud.data.bean.UserBean;
 import com.example.hiot_cloud.test.networktest.LoginResultDTO;
 import com.example.hiot_cloud.test.networktest.ResultBase;
-import com.example.hiot_cloud.test.networktest.UserBean;
 
+import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -101,5 +99,17 @@ public interface NetworkService {
     @POST("/holder/device/{device_pk}")
     Observable<ResultBase> bindDevice (@Path("device_pk")String device_pk,
                                         @Header("Authorization") String authorization);
+
+
+    /**
+     * 接口查询持有者绑定设备
+     *
+     * @param bonding
+     * @param authorization
+     * @return
+     */
+    @GET("/holder/user")
+    Observable< ResultBase< List< DeviceBean > > > listBindedDevice(@Query("bonding") int bonding,
+                                                                    @Header("Authorization") String authorization);
 
 }
