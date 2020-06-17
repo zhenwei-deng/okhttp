@@ -22,6 +22,7 @@ import com.example.hiot_cloud.test.mvptest.TestMVPActivity;
 import com.example.hiot_cloud.test.networktest.TestNetworkPackActivity;
 import com.example.hiot_cloud.ui.ChangeEmailupdate.ChangeUserEmailActivity;
 import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
+import com.example.hiot_cloud.ui.devicedetail.DeviceDetailActivity;
 import com.example.hiot_cloud.ui.devicelist.DeviceListFragment;
 import com.example.hiot_cloud.ui.login.LoginActivity;
 import com.example.hiot_cloud.ui.main.MainActivity;
@@ -63,6 +64,8 @@ public interface ActivityComponent {
     void inject(ScanActivity activity);
 
     void inject(DeviceListFragment activity);
+
+    void inject(DeviceDetailActivity activity);
 
     @Component.Builder
     interface ActivityComponentBuilder {

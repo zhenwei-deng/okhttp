@@ -1,6 +1,7 @@
 package com.example.hiot_cloud.data;
 
 import com.example.hiot_cloud.data.bean.DeviceBean;
+import com.example.hiot_cloud.data.bean.DeviceDetailBean;
 import com.example.hiot_cloud.data.bean.UserBean;
 import com.example.hiot_cloud.test.networktest.LoginResultDTO;
 import com.example.hiot_cloud.test.networktest.ResultBase;
@@ -171,4 +172,24 @@ public class DataManager {
         return service.listBindedDevice( bonding, sharedPreferencesHelper.getUserToke() );
     }
 
+    /**
+     * 获取设备详情
+     *
+     * @param deviceId
+     * @return
+     */
+    public Observable<ResultBase< DeviceDetailBean >> getDeviceDetail(String deviceId) {
+        return service.getDeviceDetail(deviceId, sharedPreferencesHelper.getUserToke());
+    }
+
+    /**
+     * 控制开关通道状态
+     *
+     * @param dataStreamId
+     * @param status
+     * @return
+     */
+    public Observable<ResultBase> changeSwitch(String dataStreamId, int status) {
+        return service.changeSwitch(dataStreamId, status, sharedPreferencesHelper.getUserToke());
+    }
 }

@@ -22,6 +22,8 @@
         tools:replace="android:theme">
         <activity android:name=".ui.scan.ScanActivity">
 
+        </activity>
+        <activity android:name=".ui.devicedetail.DeviceDetailActivity">
 
         </activity>
         <activity android:name=".ui.ChangeEmailupdate.ChangeUserEmailActivity" />
