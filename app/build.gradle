@@ -87,5 +87,8 @@ dependencies {
      //https://github.com/jenly1314/ZXingLite
      implementation 'com.king.zxing:zxing-lite:1.1.6-androidx'
 
+    //设置布局文件中的圆形图
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 }

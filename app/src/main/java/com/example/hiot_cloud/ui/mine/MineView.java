@@ -35,4 +35,14 @@ interface MineView extends BaseView {
      */
 
     void changeUserEmail();
+
+    /**
+     * 点击意见反馈的处理的操作
+     */
+    void openopinion();
+
+    /**
+     * 点击关于我们的处理的操作
+     */
+    void aboutWe();
 }

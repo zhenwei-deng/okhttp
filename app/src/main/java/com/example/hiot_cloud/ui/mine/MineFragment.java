@@ -17,10 +17,12 @@ import androidx.annotation.Nullable;
 import com.example.hiot_cloud.R;
 import com.example.hiot_cloud.data.bean.UserBean;
 import com.example.hiot_cloud.ui.ChangeEmailupdate.ChangeUserEmailActivity;
+import com.example.hiot_cloud.ui.Myinfo.MyinfoActivity;
 import com.example.hiot_cloud.ui.base.BaseActivity;
 import com.example.hiot_cloud.ui.base.BaseFragment;
 import com.example.hiot_cloud.ui.changepasswordupdate.ChangeUserPasswordActivity;
 import com.example.hiot_cloud.ui.login.LoginActivity;
+import com.example.hiot_cloud.ui.opinion.MyOpinionActivity;
 import com.example.hiot_cloud.utils.ImageUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -131,7 +133,7 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
 
     }
 
-    @OnClick({R.id.iv_head_image, R.id.tv_user_center_update_password, R.id.tv_user_center_update_email, R.id.btn_logout})
+    @OnClick({R.id.iv_head_image, R.id.tv_user_center_update_password, R.id.tv_user_center_update_email, R.id.btn_logout,R.id.tv_user_center_update_opinion, R.id.tv_user_center_update_we})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
@@ -155,9 +157,17 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
                 //由于注销是按钮所以前面要加presenter
                 presenter.logout();
                 break;
+
+            case R.id.tv_user_center_update_opinion:
+                //关于意见反馈
+                openopinion();
+                break;
+            case R.id.tv_user_center_update_we:
+                //关于我们
+                aboutWe();
+                break;
         }
     }
-
 
 
 
@@ -315,6 +325,23 @@ public class MineFragment extends BaseFragment<MineView,MinePresenter> implement
     }
 
 
+    /**
+     * 点击意见反馈,跳转到意见反馈界面
+     */
+    public void openopinion() {
+        Intent intent = new Intent( getActivity(), MyOpinionActivity.class );
+        startActivity( intent );
+        getActivity().finish();
+    }
+    /**
+     * 点击关于我们,跳转到关于我们界面
+     */
+
+    public void aboutWe() {
+        Intent intent = new Intent( getActivity(), MyinfoActivity.class );
+        startActivity( intent );
+        getActivity().finish();
+    }
 
 
 }
